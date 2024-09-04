@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import backgroundImage from "../images/homepagebackgroundblurred.jpg";
+import titleImage from "../images/homepagetitle.png";
 
 function HomePage() {
 
     return (
       <div className="vh-100 d-flex justify-content-center align-items-center"style={{backgroundImage: `url(${backgroundImage}`}}>
         <div className="menu-container">
-          <h1 className="display-1 pb-3 text-white">Worm Escape</h1>
+          <a href={"https://store.steampowered.com/app/2318480/Last_Train_Outta_Wormtown/"} ><img className="title-image" src={titleImage}/></a>
+          <div className="text-box">
+            A quick-time escape minigame based off Get(Color) Games' "Last Train Outta' Wormtown."
+            Clicking the title above will take you to the game's store page. 
+          </div>
           <Link to="/play" style={{ textDecoration: 'none' }}>
             <h1 className="button">Play</h1>
           </Link>
