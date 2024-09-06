@@ -7,10 +7,8 @@ function Play() {
   return (
     <>
     <div className="vh-100 d-flex justify-content-center align-items-center"style={{backgroundImage: `url(${backgroundImage}`}}>
-        <div className="menu-container">
-            <GameManager></GameManager>
-            <ProgressBar></ProgressBar>
-        </div>
+        <GameManager></GameManager>
+        <ProgressBar></ProgressBar>
     </div>
     </>
   )
