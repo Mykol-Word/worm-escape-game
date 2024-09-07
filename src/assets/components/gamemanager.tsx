@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSpring, animated } from '@react-spring/web'
 
 import image_up from "../images/directions/direction_up.png";
 import image_down from "../images/directions/direction_down.png";
@@ -51,15 +52,41 @@ function GameManger() {
             tempDirectionSequence[1] = tempDirectionSequence[2];
             tempDirectionSequence[2] = generateNewDirection(directionSequence);
             setDirectionSequence(tempDirectionSequence);
+
+            api2.start({
+                from: {
+                   x: '0px'
+                },
+                to: {
+                   x: '-276px' 
+                },
+            })
+    
+            api1.start({
+                from: {
+                   x: '-276px' 
+                },
+                to: {
+                   x: '-552px'
+                },
+            })
         }
         forceReload();
     }
 
+    const [springs2, api2] = useSpring(() => ({
+        from: { x: '0px'},
+      }))
+
+    const [springs1, api1] = useSpring(() => ({
+        from: { x: '-276px'},
+      }))
+
     return(
-        <div onKeyDown={handleKeyPress} tabIndex={0}>
-            <img className="direction-image" src={directionSequence[0]}/>
-            <img className="direction-image" src={directionSequence[1]}/>
-            <img key={seed} className="direction-image" src={directionSequence[2]}/>
+        <div className="right" onKeyDown={handleKeyPress} tabIndex={0}>
+            <animated.div style={{...springs1}}><img className="direction-image" src={directionSequence[0]}/></animated.div>
+            <animated.div style={{...springs2}}><img className="direction-image" src={directionSequence[1]}/></animated.div>
+            <img key={seed} className="anchored-image" src={directionSequence[2]}/>
         </div>
     );
 }

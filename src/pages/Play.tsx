@@ -6,7 +6,7 @@ function Play() {
 
   return (
     <>
-    <div className="vh-100 d-flex justify-content-center align-items-center"style={{backgroundImage: `url(${backgroundImage}`}}>
+    <div className="vh-100 w-auto d-flex justify-content-center align-items-center"style={{backgroundImage: `url(${backgroundImage}`}}>
         <GameManager></GameManager>
         <ProgressBar></ProgressBar>
     </div>
