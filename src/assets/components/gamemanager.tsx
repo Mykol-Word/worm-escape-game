@@ -18,7 +18,7 @@ const generateValidDirectionSequence = () => {
     return [image_list[img1], image_list[img2], image_list[img3]];
 }
 
-//Experimental
+
 const generateNewDirection = (currentSequence: string[]) => {
     let newImg = image_list[Math.floor(Math.random() * 5)];
     while(newImg === currentSequence[1])
@@ -86,7 +86,7 @@ function GameManger() {
         <div className="right" onKeyDown={handleKeyPress} tabIndex={0}>
             <animated.div style={{...springs1}}><img className="direction-image" src={directionSequence[0]}/></animated.div>
             <animated.div style={{...springs2}}><img className="direction-image" src={directionSequence[1]}/></animated.div>
-            <img key={seed} className="anchored-image" src={directionSequence[2]}/>
+            <img className="anchored-image" src={directionSequence[2]}/>
         </div>
     );
 }
