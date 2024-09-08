@@ -35,7 +35,11 @@ const getCurrentKey = (currentDirection: string) => {
     else return ''
 }
 
-function GameManger() {
+interface props {
+    updateScore(correct: Boolean): any;
+}
+
+function GameManger({updateScore}:props) {
 
     const [directionSequence, setDirectionSequence] = useState(generateValidDirectionSequence());
     const [seed, setSeed] = useState(Math.random);
@@ -45,6 +49,7 @@ function GameManger() {
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        let correct = false;
         const currentKey = getCurrentKey(directionSequence[0]);
         if(e.key === currentKey) {
             let tempDirectionSequence = directionSequence;
@@ -70,8 +75,10 @@ function GameManger() {
                    x: '-220%'
                 },
             })
+            correct = true;
         }
         forceReload();
+        updateScore(correct);
     }
 
     const [springs2, api2] = useSpring(() => ({

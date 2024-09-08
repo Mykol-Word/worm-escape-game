@@ -1,11 +1,18 @@
+import { useState } from 'react';
 
-function Stats() {
+interface props {
+    totalScore: number;
+    correctScore: number;
+}
+
+function Stats({totalScore, correctScore}:props) {
+
     return(
         <div className="stats-container">
             <div className="menu-container">
                 <h1 className="title-box">Total Session Stats</h1>
                 <div className="text-box">
-                    Correct: 0   Wrong: 0   Total: 0
+                    Correct: {correctScore}   Wrong: {totalScore - correctScore}   Total: {totalScore}
                 </div>
             </div>
             <div className="menu-container">
