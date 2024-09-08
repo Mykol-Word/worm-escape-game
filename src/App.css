@@ -32,19 +32,26 @@ body {
 }
 
 .menu-container {
-    width: 800px; 
-    height: auto;
+    max-width: 50vw;
+    height:auto;
     background-color: rgba(0, 0, 0, 0.5);
     text-align:center;
     border-radius: 40px;
     padding: 40px;
     justify-items: center;
+    margin:10px;
 }
 
 .title-image {
     width: 100%;
     height: auto;
     padding: 20px;
+}
+
+.title-box {
+    font-size: xx-large;
+    color: rgb(216, 216, 216);
+    padding: 5px
 }
 
 .text-box {
@@ -69,4 +76,10 @@ body {
     margin-left: auto;
     margin-right: 10%;
     align-items: right;
+}
+
+.stats-container {
+    width: 30vw;
+    margin: 5vw;
+    text-align: center;
 }
