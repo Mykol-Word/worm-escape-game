@@ -55,19 +55,19 @@ function GameManger() {
 
             api2.start({
                 from: {
-                   x: '0px'
+                   x: '0%'
                 },
                 to: {
-                   x: '-276px' 
+                   x: '-110%' 
                 },
             })
     
             api1.start({
                 from: {
-                   x: '-276px' 
+                   x: '-110%' 
                 },
                 to: {
-                   x: '-552px'
+                   x: '-220%'
                 },
             })
         }
@@ -75,11 +75,11 @@ function GameManger() {
     }
 
     const [springs2, api2] = useSpring(() => ({
-        from: { x: '0px'},
+        from: { x: '0%'},
       }))
 
     const [springs1, api1] = useSpring(() => ({
-        from: { x: '-276px'},
+        from: { x: '-110%'},
       }))
 
     return(

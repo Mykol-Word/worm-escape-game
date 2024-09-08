@@ -54,12 +54,14 @@ body {
 }
 
 .direction-image{
+    width: 15vw;
     position: absolute;
     padding: 20px;
     z-index: 1;
 }
 
 .anchored-image{
+    width: 15vw;
     padding: 20px;   
 }
 
