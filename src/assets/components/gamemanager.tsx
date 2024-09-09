@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web'
+import useSound from 'use-sound';
 
 import image_up from "../images/directions/direction_up.png";
 import image_down from "../images/directions/direction_down.png";
 import image_left from "../images/directions/direction_left.png";
 import image_right from "../images/directions/direction_right.png";
 import image_jump from "../images/directions/direction_jump.png";
+
+import correct_sound from "../sounds/correct_sound.mp3";
+import wrong_sound from "../sounds/wrong_sound.mp3";
 
 const image_list = [image_up, image_down, image_left, image_right, image_jump];
 
@@ -63,15 +67,21 @@ function GameManger({updateScore}:props) {
     const [directionSequence, setDirectionSequence] = useState(generateValidDirectionSequence());
     const [lastDirection, setLastDirection] = useState(directionSequence[0]);
     const [seed, setSeed] = useState(Math.random);
+    const [correctScore, setCorrectScore] = useState(0);
 
     const forceReload = () => {
         setSeed(Math.random());
     }
 
+    const [correctSound] = useSound(correct_sound, { playbackRate: 1 + (correctScore/100) });
+    const [wrongSound] = useSound(wrong_sound);
+
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let correct = false;
         const currentKey = getCurrentKey(directionSequence[0]);
         if(e.key === currentKey) {
+            correctSound();
+            setCorrectScore(correctScore + 1)
             setLastDirection(directionSequence[0]);
             let tempDirectionSequence = directionSequence;
             tempDirectionSequence[0] = tempDirectionSequence[1];
@@ -107,6 +117,7 @@ function GameManger({updateScore}:props) {
             })
             correct = true;
         }
+        else { wrongSound(); }
         forceReload();
         updateScore(correct);
     }
