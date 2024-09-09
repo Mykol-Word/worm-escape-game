@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web'
 
 import image_up from "../images/directions/direction_up.png";
@@ -40,6 +40,25 @@ interface props {
 }
 
 function GameManger({updateScore}:props) {
+    useEffect(() => {
+        api2.start({
+            from: {
+               x: '0%'
+            },
+            to: {
+               x: '-110%' 
+            },
+        })
+
+        api1.start({
+            from: {
+               x: '-110%' 
+            },
+            to: {
+               x: '-220%'
+            },
+        })
+    }, []);
 
     const [directionSequence, setDirectionSequence] = useState(generateValidDirectionSequence());
     const [seed, setSeed] = useState(Math.random);
