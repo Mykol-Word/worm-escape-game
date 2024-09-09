@@ -68,6 +68,7 @@ function GameManger({updateScore}:props) {
     const [lastDirection, setLastDirection] = useState(directionSequence[0]);
     const [seed, setSeed] = useState(Math.random);
     const [correctScore, setCorrectScore] = useState(0);
+    const [timedOut, setTimedOut] = useState(false);
 
     const forceReload = () => {
         setSeed(Math.random());
@@ -77,6 +78,7 @@ function GameManger({updateScore}:props) {
     const [wrongSound] = useSound(wrong_sound);
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if(timedOut) { return; }
         let correct = false;
         const currentKey = getCurrentKey(directionSequence[0]);
         if(e.key === currentKey) {
@@ -117,7 +119,11 @@ function GameManger({updateScore}:props) {
             })
             correct = true;
         }
-        else { wrongSound(); }
+        else { 
+            wrongSound();
+            setTimedOut(true);
+            setTimeout(() => {setTimedOut(false);}, 300);
+        }
         forceReload();
         updateScore(correct);
     }
