@@ -72,10 +72,8 @@ body {
     padding: 20px;   
 }
 
-.base-image {
-    width: 15vw;
-    padding: 20px; 
-    translate: -120%;
+.fade-image {
+    transform: translate3d(-220%, 0px, 0px);
 }
 
 .right {

@@ -61,6 +61,7 @@ function GameManger({updateScore}:props) {
     }, []);
 
     const [directionSequence, setDirectionSequence] = useState(generateValidDirectionSequence());
+    const [lastDirection, setLastDirection] = useState(directionSequence[0]);
     const [seed, setSeed] = useState(Math.random);
 
     const forceReload = () => {
@@ -71,11 +72,21 @@ function GameManger({updateScore}:props) {
         let correct = false;
         const currentKey = getCurrentKey(directionSequence[0]);
         if(e.key === currentKey) {
+            setLastDirection(directionSequence[0]);
             let tempDirectionSequence = directionSequence;
             tempDirectionSequence[0] = tempDirectionSequence[1];
             tempDirectionSequence[1] = tempDirectionSequence[2];
             tempDirectionSequence[2] = generateNewDirection(directionSequence);
             setDirectionSequence(tempDirectionSequence);
+
+            api3.start({
+                from: {
+                   opacity: 1
+                },
+                to: {
+                   opacity: 0
+                },
+            })
 
             api2.start({
                 from: {
@@ -100,16 +111,24 @@ function GameManger({updateScore}:props) {
         updateScore(correct);
     }
 
+    const [springs3, api3] = useSpring(() => ({
+        from: { opacity: 1 },
+      }))
+
+
     const [springs2, api2] = useSpring(() => ({
         from: { x: '0%'},
+        config: {mass:1, tension:150, friction:18, clamp: true}
       }))
 
     const [springs1, api1] = useSpring(() => ({
         from: { x: '-110%'},
+        config: {mass:1, tension:150, friction:18, clamp: true}
       }))
 
     return(
         <div className="right" onKeyDown={handleKeyPress} tabIndex={0}>
+            <animated.div style={{...springs3}}><img className="direction-image fade-image" src={lastDirection}/></animated.div>
             <animated.div style={{...springs1}}><img className="direction-image" src={directionSequence[0]}/></animated.div>
             <animated.div style={{...springs2}}><img className="direction-image" src={directionSequence[1]}/></animated.div>
             <img className="anchored-image" src={directionSequence[2]}/>
