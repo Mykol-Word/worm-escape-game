@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface props {
     totalScore: number;
@@ -32,6 +33,9 @@ function Stats({totalScore, correctScore, sessionStartTime, resetScore}:props) {
 
     return(
         <div className="stats-container">
+            <Link to="/" style={{ textDecoration: 'none' }}>
+                <h1 className="button">Home</h1>
+            </Link>
             <div className="menu-container">
                 <h1 className="title-box">Total Session Stats</h1>
                 <div className="text-box">

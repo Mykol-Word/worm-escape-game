@@ -17,10 +17,12 @@ body {
     border: solid;
     border-radius: 20px;
     border-color: gainsboro;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-left: 5%;
+    padding-right: 5%;
     background-color: rgba(255, 255, 255, 0.1);
-    font-size: xxx-large;
-    margin: 20px;
+    font-size: 2vw;
+    margin: 10px;
 }
 
 .button:hover {
