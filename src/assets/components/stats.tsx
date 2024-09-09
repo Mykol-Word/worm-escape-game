@@ -4,9 +4,10 @@ interface props {
     totalScore: number;
     correctScore: number;
     sessionStartTime: number;
+    resetScore(): any;
 }
 
-function Stats({totalScore, correctScore, sessionStartTime}:props) {
+function Stats({totalScore, correctScore, sessionStartTime, resetScore}:props) {
     const [scoreTimes, setScoreTimes] = useState(["N/A","N/A","N/A","N/A"]);
     const [currentTime, setCurrentTime] = useState(Date.now());
 
@@ -16,6 +17,11 @@ function Stats({totalScore, correctScore, sessionStartTime}:props) {
         copyScoreTimes[index] = value;
         setScoreTimes(copyScoreTimes);
         return true;
+    }
+
+    const reset = () => {
+        resetScore();
+        setScoreTimes(["N/A","N/A","N/A","N/A"]);
     }
 
     const updateCurrentTime = () => {
@@ -64,10 +70,10 @@ function Stats({totalScore, correctScore, sessionStartTime}:props) {
             <div className="menu-container">
                 <h1 className="title-box">Time Elapsed</h1>
                 <div className="text-box">
-                    <span className='special-text'>{((currentTime - sessionStartTime) / 1000).toFixed(2)}</span>
+                    <span className='special-text'>{totalScore != 0 ? (Math.abs((currentTime - sessionStartTime) / 1000).toFixed(2)) : 0}</span>
                 </div>
             </div>
-            <button className="button">Reset Session</button>
+            <button className="button" onClick={reset}>Reset Session</button>
         </div>
     );
 }

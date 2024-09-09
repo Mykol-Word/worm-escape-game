@@ -15,10 +15,16 @@ function Play() {
     if(correct) { setCorrectScore(correctScore + 1 );}
   }
 
+  const resetScore = () => {
+    setTotalScore(0);
+    setCorrectScore(0);
+    setStartTime(Date.now());
+  }
+
   return (
     <>
     <div className="vh-100 w-auto d-flex justify-content-center align-items-center"style={{backgroundImage: `url(${backgroundImage}`}}>
-        <Stats totalScore={totalScore} correctScore={correctScore} sessionStartTime={startTime}></Stats>
+        <Stats totalScore={totalScore} correctScore={correctScore} sessionStartTime={startTime} resetScore={resetScore}></Stats>
         <GameManager updateScore={updateScore}></GameManager>
     </div>
     </>
