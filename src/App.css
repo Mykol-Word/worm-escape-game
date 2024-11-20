@@ -11,6 +11,11 @@ body {
     max-height: 2060px;
 }
 
+*:focus {
+    outline: none;
+    border: none;
+}
+
 .button {
     transition: transform .2s;
     color:white;
@@ -67,6 +72,11 @@ body {
     position: absolute;
     padding: 20px;
     z-index: 1;
+}
+
+.direction-image:focus{
+    outline: none;
+    border: none;
 }
 
 .anchored-image{

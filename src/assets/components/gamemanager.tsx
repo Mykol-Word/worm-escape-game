@@ -72,6 +72,7 @@ function GameManger({updateScore}:props) {
 
     const forceReload = () => {
         setSeed(Math.random());
+        seed;
     }
 
     const [correctSound] = useSound(correct_sound, { playbackRate: 1 + (correctScore/100) });
