@@ -7,7 +7,7 @@ import "./App.css"
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/worm-escape-game/'}>
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
